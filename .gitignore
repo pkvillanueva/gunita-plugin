@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Production
+build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Files related to IDEs and code editors
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vscode/
+*.code-workspace
+
+# Ignore OS generated files
+ehthumbs.db
