@@ -1,26 +1,24 @@
 {
-	"name": "nika",
+	"name": "gunita-plugin",
 	"version": "0.0.1",
-	"description": "Nika is an AI-powered WordPress plugin designed to enhance content marketing strategies. Using advanced AI models like ChatGPT and DALL-E, Nika generates high-quality text and images, provides site analysis, and offers fine-tuning for personalized content. Additionally, Nika offers advanced features like popup and email marketing tools, workflow automation, and more, all seamlessly integrated with Gutenberg.",
-	"main": "index.js",
-	"contributors": [
-		{
-			"name": "Patrick Villanueva",
-			"email": "pkrvillanueva@gmail.com"
-		},
-		{
-			"name": "Kenneth Villanueva",
-			"email": "ken.villanueva21@gmail.com"
-		}
+	"description": "Welcome to GunitaPlugin, your go-to WordPress plugin boilerplate. Crafted to leverage the latest dev tools in WordPress plugin development, this boilerplate is designed to empower you to create dynamic, feature-rich, and robust plugins with ease. This is not just another boilerplate; it's your head start in the competitive WordPress plugin development landscape.",
+	"author": {
+		"name": "Gunita",
+		"email": "hello@gunita.dev"
+	},
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"wordpress",
+		"plugin"
 	],
-	"scripts": {
-		"env:start": "wp-env start",
-		"env:stop": "wp-env stop",
-		"start": "wp-scripts start",
-		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint:js": "wp-scripts lint-js",
-		"test": "wp-scripts test-unit-js"
+	"homepage": "https://github.com/gunitadev/gunita-plugin",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gunitadev/gunita-plugin.git"
+	},
+	"bugs": {
+		"url": "https://github.com/gunitadev/gunita-plugin/issues",
+		"email": "hello@gunita.dev"
 	},
 	"devDependencies": {
 		"@wordpress/babel-preset-default": "^7.18.0",
@@ -31,5 +29,17 @@
 		"@wordpress/stylelint-config": "^21.17.0",
 		"cssnano": "^6.0.1",
 		"prettier": "npm:wp-prettier@^2.8.5"
+	},
+	"scripts": {
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop",
+		"start": "wp-scripts start",
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"test": "wp-scripts test-unit-js",
+		"plugin-zip": "wp-scripts plugin-zip"
 	}
 }

@@ -1,16 +1,9 @@
 {
-	"name": "nika/nika",
-	"version": "0.0.1",
-	"description": "Nika is an AI-powered WordPress plugin designed to enhance content marketing strategies. Using advanced AI models like ChatGPT and DALL-E, Nika generates high-quality text and images, provides site analysis, and offers fine-tuning for personalized content. Additionally, Nika offers advanced features like popup and email marketing tools, workflow automation, and more, all seamlessly integrated with Gutenberg.",
-	"homepage": "https://nika.io",
+	"name": "gunitadev/gunita-plugin",
 	"authors": [
 		{
-			"name": "Patrick Villanueva",
-			"email": "pkrvillanueva@gmail.com"
-		},
-		{
-			"name": "Kenneth Villanueva",
-			"email": "ken.villanueva21@gmail.com"
+			"name": "Gunita",
+			"email": "hello@gunita.dev"
 		}
 	],
 	"minimum-stability": "dev",
@@ -19,13 +12,13 @@
 		"php": ">=7.4"
 	},
 	"require-dev": {
-		"squizlabs/php_codesniffer": "*",
 		"wp-coding-standards/wpcs": "^2.3",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-		"phpcompatibility/phpcompatibility-wp": "*",
 		"phpstan/phpstan": "^1.10",
 		"szepeviktor/phpstan-wordpress": "^1.3",
-		"composer/installers": "^2.2"
+		"composer/installers": "^2.2",
+		"squizlabs/php_codesniffer": "^3.7",
+		"phpcompatibility/phpcompatibility-wp": "^2.1"
 	},
 	"scripts": {
 		"analyze": "@php ./vendor/bin/phpstan analyze",
@@ -40,7 +33,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Nika\\": "includes/"
+			"GunitaPlugin\\": "includes/"
 		}
 	}
 }
