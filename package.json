@@ -21,14 +21,17 @@
 		"email": "hello@gunita.dev"
 	},
 	"devDependencies": {
-		"@wordpress/babel-preset-default": "^7.18.0",
+		"@types/react": "^18.2.74",
+		"@types/react-dom": "^18.2.24",
+		"@wordpress/babel-preset-default": "^7.39.0",
 		"@wordpress/env": "^7.0.0",
-		"@wordpress/eslint-plugin": "^14.7.0",
-		"@wordpress/prettier-config": "^2.17.0",
-		"@wordpress/scripts": "^26.4.0",
-		"@wordpress/stylelint-config": "^21.17.0",
-		"cssnano": "^6.0.1",
-		"prettier": "npm:wp-prettier@^2.8.5"
+		"@wordpress/eslint-plugin": "^14.12.0",
+		"@wordpress/prettier-config": "^2.25.13",
+		"@wordpress/scripts": "^26.19.0",
+		"@wordpress/stylelint-config": "^21.38.0",
+		"cssnano": "^6.1.2",
+		"prettier": "npm:wp-prettier@^2.8.5",
+		"typescript": "^5.4.4"
 	},
 	"scripts": {
 		"env:start": "wp-env start",

@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"outDir": "./build",
+		"module": "esnext",
+		"target": "es5",
+		"lib": [ "dom", "dom.iterable", "esnext" ],
+		"jsx": "react",
+		"moduleResolution": "node",
+		"sourceMap": true,
+		"allowJs": true,
+		"noEmit": true,
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"paths": {
+		"@wordpress/*": [ "node_modules/@wordpress/*" ]
+	},
+	"include": [ "./src/**/*" ]
+}
