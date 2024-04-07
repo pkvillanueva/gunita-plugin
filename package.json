@@ -31,6 +31,8 @@
 		"@wordpress/stylelint-config": "^21.38.0",
 		"cssnano": "^6.1.2",
 		"prettier": "npm:wp-prettier@^2.8.5",
+		"stylelint-config-tailwindcss": "^0.0.7",
+		"tailwindcss": "^3.4.3",
 		"typescript": "^5.4.4"
 	},
 	"scripts": {

@@ -25,6 +25,9 @@ class Dashboard {
 	 */
 	public static function render(): void {
 		?>
+		<div class="ga-bg-black">
+			<h1 class="ga-text-lg"><?php esc_html_e( 'Dashboard', 'gunita-plugin' ); ?></h1>
+		</div>
 		<?php
 	}
 }
