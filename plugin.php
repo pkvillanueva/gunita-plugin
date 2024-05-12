@@ -29,25 +29,27 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
  * Define constants.
  */
 define( 'GUNITA_PLUGIN_VERSION', '0.0.1' );
+define( 'GUNITA_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+define( 'GUNITA_PLUGIN_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 /**
  * Load install class.
  */
-register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Install', 'get_instance' ] );
+register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Install', 'instance' ] );
 
 /**
  * Load uninstall class.
  */
-register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\Uninstall', 'get_instance' ] );
+register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\Uninstall', 'instance' ] );
 
 /**
  * Initialize plugin.
  */
-Setup::get_instance();
+Setup::instance();
 
 /**
  * Admin only initialize.
  */
 if ( is_admin() ) {
-	Admin\Setup::get_instance();
+	Admin\Setup::instance();
 }

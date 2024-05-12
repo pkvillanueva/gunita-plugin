@@ -21,7 +21,7 @@
 		"phpcompatibility/phpcompatibility-wp": "^2.1"
 	},
 	"scripts": {
-		"analyze": "@php ./vendor/bin/phpstan analyze",
+		"analyze": "@php ./vendor/bin/phpstan analyze .",
 		"lint": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
 		"lint:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
 	},
@@ -33,7 +33,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"GunitaPlugin\\": "includes/"
+			"GunitaPlugin\\": "src/"
 		}
 	}
 }

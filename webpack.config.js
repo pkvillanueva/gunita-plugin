@@ -4,7 +4,8 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 module.exports = {
 	...defaultConfig,
 	entry: {
-		script: resolve( process.cwd(), 'src/index.ts' ),
+		admin: resolve( process.cwd(), 'client/admin/index.ts' ),
+		public: resolve( process.cwd(), 'client/public/index.ts' ),
 	},
 	output: {
 		path: resolve( process.cwd(), 'build' ),

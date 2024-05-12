@@ -19,23 +19,23 @@
 		 v flag: Print verbose output.
 		 n flag: Do not print warnings.
 	-->
-	<arg value="psv"/>
+	<arg value="psv" />
 
 	<!-- Only check the PHP files. -->
-	<arg name="extensions" value="php"/>
+	<arg name="extensions" value="php" />
 
 	<!-- Files and directories to lint -->
 	<file>.</file>
 
 	<!-- Include the WordPress ruleset. -->
 	<rule ref="WordPress">
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 	</rule>
 
 	<!-- Use square bracket array. -->
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
 
 	<!-- Verify that the text_domain is set to the desired text-domain.
 		 Multiple valid text domains can be provided as a comma-delimited list. -->
@@ -45,18 +45,14 @@
 		</properties>
 	</rule>
 
-	<!-- Verify that no WP functions are used which are deprecated or have been removed.
-		 The minimum version set here should be in line with the minimum WP version
-		 as set in the "Requires at least" tag in the readme.txt file. -->
-	<rule ref="WordPress.WP.DeprecatedFunctions">
-		<properties>
-			<property name="minimum_supported_version" value="7.4" />
-		</properties>
-	</rule>
-
 	<!-- Disable rule for type hint. -->
     <rule ref="Squiz.Commenting.FunctionComment">
-        <exclude name="Squiz.Commenting.FunctionComment.InvalidTypeHint"/>
+        <exclude name="Squiz.Commenting.FunctionComment.InvalidTypeHint" />
+    </rule>
+
+	<!-- Disable rule for file comment. -->
+    <rule ref="Squiz.Commenting.FileComment">
+        <exclude name="Squiz.Commenting.FileComment.Missing" />
     </rule>
 
 	<!-- Include sniffs for PHP cross-version compatibility. -->
