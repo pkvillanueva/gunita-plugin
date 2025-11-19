@@ -1,13 +1,18 @@
-const { resolve } = require( 'path' );
+/**
+ * WordPress Dependencies
+ */
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
+/**
+ * Custom webpack configuration
+ *
+ * Extends the default @wordpress/scripts webpack config
+ * to use custom entry points.
+ */
 module.exports = {
 	...defaultConfig,
 	entry: {
-		admin: resolve( process.cwd(), 'client/admin/index.ts' ),
-		public: resolve( process.cwd(), 'client/public/index.ts' ),
-	},
-	output: {
-		path: resolve( process.cwd(), 'build' ),
+		admin: './assets/js/admin/index.ts',
+		public: './assets/js/frontend/index.ts',
 	},
 };

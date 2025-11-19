@@ -1,9 +1,16 @@
 <?php
+/**
+ * Admin setup class.
+ *
+ * Handles admin-specific functionality including asset enqueueing.
+ * Add your admin menu pages, settings, and other admin functionality here.
+ *
+ * @package GunitaPlugin
+ */
 
 namespace GunitaPlugin\Admin;
 
 use GunitaPlugin\Helpers\Asset;
-use GunitaPlugin\Traits\Singleton;
 
 /**
  * Class Setup
@@ -12,31 +19,40 @@ use GunitaPlugin\Traits\Singleton;
  */
 class Setup {
 
-	use Singleton;
-
 	/**
 	 * Setup constructor.
-	 *
-	 * Initializes the Setup class and adds the necessary action hooks.
 	 */
-	private function __construct() {
-		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+	public function __construct() {
+		// Constructor intentionally left empty.
+		// Use register_hooks() to register WordPress hooks.
+	}
+
+	/**
+	 * Register WordPress hooks.
+	 *
+	 * This method should be called after instantiation to register
+	 * all WordPress action and filter hooks.
+	 *
+	 * Example: Add admin menu pages, settings pages, etc.
+	 *
+	 * @return void
+	 */
+	public function register_hooks(): void {
+		// Register admin assets.
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+
+		// Add your admin menu pages here.
+		// Example: add_action( 'admin_menu', [ $this, 'add_admin_menu' ] ).
 	}
 
 	/**
-	 * Adds the GunitaPlugin menu page to the admin menu.
-	 */
-	public function admin_menu(): void {
-		add_menu_page( __( 'GunitaPlugin', 'gunita-plugin' ), __( 'GunitaPlugin', 'gunita-plugin' ), 'manage_options', 'gunita-plugin', [ __NAMESPACE__ . '\Dashboard', 'render' ], 'dashicons-star-filled', 0 );
-	}
-
-
-	/**
-	 * Enqueues the plugin styles.
+	 * Enqueues the admin styles.
 	 *
-	 * This method is hooked to the 'wp_enqueue_scripts' action and is responsible for enqueueing the plugin styles.
+	 * This method is hooked to the 'admin_enqueue_scripts' action and is responsible
+	 * for enqueueing the plugin admin styles.
+	 *
+	 * @return void
 	 */
 	public function enqueue_styles(): void {
 		wp_enqueue_style(
@@ -48,9 +64,12 @@ class Setup {
 	}
 
 	/**
-	 * Enqueues the plugin scripts.
+	 * Enqueues the admin scripts.
 	 *
-	 * This method is hooked to the 'wp_enqueue_scripts' action and is responsible for enqueueing the plugin scripts.
+	 * This method is hooked to the 'admin_enqueue_scripts' action and is responsible
+	 * for enqueueing the plugin admin scripts.
+	 *
+	 * @return void
 	 */
 	public function enqueue_scripts(): void {
 		wp_enqueue_script(

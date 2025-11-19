@@ -17,5 +17,5 @@
 	"paths": {
 		"@wordpress/*": [ "node_modules/@wordpress/*" ]
 	},
-	"include": [ "./client/**/*" ]
+	"include": [ "./assets/js/**/*" ]
 }

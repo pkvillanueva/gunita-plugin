@@ -1,0 +1,24 @@
+/**
+ * Admin Styles
+ *
+ * Main stylesheet for the admin area of the plugin.
+ * Add your custom admin styles below or import additional CSS files as needed.
+ *
+ * @package GunitaPlugin
+ */
+
+/**
+ * Import shared styles that are used across admin and frontend
+ */
+@import "../shared/shared.css";
+
+/**
+ * Your custom admin styles go here
+ */
+.gunita-plugin-admin {
+	padding: 20px;
+}
+
+.gunita-plugin-dashboard h1 {
+	margin-bottom: 1em;
+}

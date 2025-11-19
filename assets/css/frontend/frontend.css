@@ -1,0 +1,17 @@
+/**
+ * Frontend Styles
+ *
+ * Main stylesheet for the public-facing side of the plugin.
+ * Add your custom styles below or import additional CSS files as needed.
+ *
+ * @package GunitaPlugin
+ */
+
+/**
+ * Import shared styles
+ */
+@import "../shared/shared.css";
+
+/**
+ * Your custom frontend styles go here
+ */

@@ -1,8 +1,13 @@
 <?php
+/**
+ * Plugin installation handler.
+ *
+ * Handles tasks that need to run when the plugin is activated.
+ *
+ * @package GunitaPlugin
+ */
 
 namespace GunitaPlugin;
-
-use GunitaPlugin\Traits\Singleton;
 
 /**
  * Class Install
@@ -11,12 +16,19 @@ use GunitaPlugin\Traits\Singleton;
  */
 class Install {
 
-	use Singleton;
-
 	/**
-	 * Install constructor.
+	 * Run installation tasks.
 	 *
-	 * Private constructor to prevent direct instantiation of the class.
+	 * This method is called when the plugin is activated.
+	 * Add any setup tasks like creating database tables, setting default options, etc.
+	 *
+	 * @return void
 	 */
-	private function __construct() {}
+	public static function activate(): void {
+		// Flush rewrite rules on activation.
+		flush_rewrite_rules();
+
+		// Add any other activation tasks here.
+		// Example: Create custom database tables, set default options, etc.
+	}
 }

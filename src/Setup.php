@@ -1,25 +1,34 @@
 <?php
+/**
+ * Main plugin setup class.
+ *
+ * Handles public-facing functionality including text domain loading
+ * and asset enqueueing.
+ *
+ * @package GunitaPlugin
+ */
 
 namespace GunitaPlugin;
 
 use GunitaPlugin\Helpers\Asset;
-use GunitaPlugin\Traits\Singleton;
 
 /**
  * Class Setup
  *
- * This class handles the setup of the Gunita Plugin.
+ * This class handles the setup of the Gunita Plugin public-facing functionality.
  */
 class Setup {
 
-	use Singleton;
 
 	/**
-	 * Setup constructor.
+	 * Register WordPress hooks.
 	 *
-	 * Initializes the Setup class by adding necessary actions.
+	 * This method should be called after instantiation to register
+	 * all WordPress action and filter hooks.
+	 *
+	 * @return void
 	 */
-	private function __construct() {
+	public function register_hooks(): void {
 		add_action( 'init', [ $this, 'init' ], 0 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );

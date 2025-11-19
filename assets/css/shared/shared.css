@@ -1,0 +1,90 @@
+/**
+ * Shared Styles
+ *
+ * Styles shared between admin and frontend.
+ * Use CSS custom properties for theme consistency.
+ *
+ * @package GunitaPlugin
+ */
+
+:root {
+
+	/* Colors - Brand */
+	--gunita-color-primary: #0073aa;
+	--gunita-color-secondary: #23282d;
+	--gunita-color-accent: #00a0d2;
+
+	/* Colors - Semantic */
+	--gunita-color-success: #46b450;
+	--gunita-color-warning: #ffb900;
+	--gunita-color-error: #dc3232;
+	--gunita-color-info: #00a0d2;
+
+	/* Colors - Neutral */
+	--gunita-color-text: #32373c;
+	--gunita-color-text-light: #646970;
+	--gunita-color-border: #dcdcde;
+	--gunita-color-background: #fff;
+	--gunita-color-background-alt: #f0f0f1;
+
+	/* Spacing - Use multiples of base unit */
+	--gunita-spacing-xs: 0.25rem;   /* 4px */
+	--gunita-spacing-sm: 0.5rem;    /* 8px */
+	--gunita-spacing-md: 1rem;      /* 16px */
+	--gunita-spacing-lg: 1.5rem;    /* 24px */
+	--gunita-spacing-xl: 2rem;      /* 32px */
+	--gunita-spacing-2xl: 3rem;     /* 48px */
+
+	/* Typography - Font Families */
+	--gunita-font-family-base: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen-sans, ubuntu, cantarell, "Helvetica Neue", sans-serif;
+	--gunita-font-family-mono: ui-monospace, menlo, monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+	/* Typography - Font Sizes */
+	--gunita-font-size-xs: 0.75rem;     /* 12px */
+	--gunita-font-size-sm: 0.875rem;    /* 14px */
+	--gunita-font-size-base: 1rem;      /* 16px */
+	--gunita-font-size-lg: 1.125rem;    /* 18px */
+	--gunita-font-size-xl: 1.25rem;     /* 20px */
+	--gunita-font-size-2xl: 1.5rem;     /* 24px */
+	--gunita-font-size-3xl: 1.875rem;   /* 30px */
+
+	/* Typography - Font Weights */
+	--gunita-font-weight-normal: 400;
+	--gunita-font-weight-medium: 500;
+	--gunita-font-weight-semibold: 600;
+	--gunita-font-weight-bold: 700;
+
+	/* Typography - Line Heights */
+	--gunita-line-height-tight: 1.25;
+	--gunita-line-height-normal: 1.5;
+	--gunita-line-height-relaxed: 1.75;
+
+	/* Border Radius */
+	--gunita-radius-sm: 2px;
+	--gunita-radius-md: 4px;
+	--gunita-radius-lg: 8px;
+	--gunita-radius-full: 9999px;
+
+	/* Shadows */
+	--gunita-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--gunita-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	--gunita-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+	/* Transitions */
+	--gunita-transition-fast: 150ms ease-in-out;
+	--gunita-transition-base: 300ms ease-in-out;
+	--gunita-transition-slow: 500ms ease-in-out;
+
+	/* Z-Index Scale */
+	--gunita-z-index-dropdown: 1000;
+	--gunita-z-index-sticky: 1020;
+	--gunita-z-index-fixed: 1030;
+	--gunita-z-index-modal-backdrop: 1040;
+	--gunita-z-index-modal: 1050;
+	--gunita-z-index-popover: 1060;
+	--gunita-z-index-tooltip: 1070;
+}
+
+/**
+ * Add your shared utility classes here
+ */

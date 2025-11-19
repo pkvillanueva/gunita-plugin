@@ -5,6 +5,10 @@ vendor/
 # Production
 build/
 
+# Test coverage
+coverage/
+.phpunit.*
+
 # System files
 .DS_Store
 Thumbs.db

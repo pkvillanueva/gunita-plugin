@@ -4,6 +4,7 @@
  * Plugin URI: https://gunita.dev
  * Description: Welcome to GunitaPlugin, your go-to WordPress plugin boilerplate. Crafted to leverage the latest dev tools in WordPress plugin development, this boilerplate is designed to empower you to create dynamic, feature-rich, and robust plugins with ease. This is not just another boilerplate; it's your head start in the competitive WordPress plugin development landscape.
  * Version: 0.0.1
+ * Requires PHP: 7.4
  * Author: Gunita
  * Author URI: https://gunita.dev
  * License: GPL v2 or later
@@ -33,23 +34,33 @@ define( 'GUNITA_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'GUNITA_PLUGIN_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 /**
- * Load install class.
+ * Register activation hook.
+ *
+ * Runs when the plugin is activated.
  */
-register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Install', 'instance' ] );
+register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Install', 'activate' ] );
 
 /**
- * Load uninstall class.
+ * Register uninstall hook.
+ *
+ * Runs when the plugin is uninstalled.
  */
-register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\Uninstall', 'instance' ] );
+register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\Uninstall', 'uninstall' ] );
 
 /**
  * Initialize plugin.
+ *
+ * Instantiate the main Setup class and register its hooks.
  */
-Setup::instance();
+$gunita_plugin_setup = new Setup();
+$gunita_plugin_setup->register_hooks();
 
 /**
- * Admin only initialize.
+ * Initialize admin functionality.
+ *
+ * Only load admin functionality when in the WordPress admin.
  */
 if ( is_admin() ) {
-	Admin\Setup::instance();
+	$gunita_plugin_admin_setup = new Admin\Setup();
+	$gunita_plugin_admin_setup->register_hooks();
 }

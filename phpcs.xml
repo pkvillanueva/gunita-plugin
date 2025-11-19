@@ -38,10 +38,12 @@
     <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
 
 	<!-- Verify that the text_domain is set to the desired text-domain.
-		 Multiple valid text domains can be provided as a comma-delimited list. -->
+		 Multiple valid text domains can be provided as element nodes. -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array" value="gunita-plugin" />
+			<property name="text_domain" type="array">
+				<element value="gunita-plugin"/>
+			</property>
 		</properties>
 	</rule>
 
