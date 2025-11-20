@@ -22,3 +22,6 @@ Thumbs.db
 
 # Ignore OS generated files
 ehthumbs.db
+
+# Husky (keep hooks but ignore auto-generated files)
+.husky/_

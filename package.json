@@ -25,6 +25,8 @@
 		"wp-prettier": "^3.0.3"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^20.1.0",
+		"@commitlint/config-conventional": "^20.0.0",
 		"@types/react": "^19.2.6",
 		"@types/react-dom": "^19.2.3",
 		"@wordpress/env": "^10.35.0",
@@ -32,6 +34,8 @@
 		"@wordpress/prettier-config": "^4.35.0",
 		"@wordpress/scripts": "^31.0.0",
 		"@wordpress/stylelint-config": "^23.27.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
 		"prettier": "npm:wp-prettier@^3.0.3",
 		"typescript": "^5.9.3"
 	},
@@ -40,15 +44,30 @@
 		"env:stop": "wp-env stop",
 		"start": "wp-scripts start",
 		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:pkg-json",
+		"format": "pnpm run format:js && pnpm run format:php",
+		"format:js": "wp-scripts format",
+		"format:php": "composer lint:fix",
+		"lint": "pnpm run lint:css && pnpm run lint:js && pnpm run lint:pkg-json && pnpm run lint:php",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"lint:php": "composer lint",
 		"test:js": "wp-scripts test-unit-js",
 		"test:js:watch": "wp-scripts test-unit-js --watch",
 		"test:php": "wp-env run tests-cli --env-cwd=\"wp-content/plugins/$(basename \"$PWD\")\" vendor/bin/phpunit",
 		"test": "pnpm run test:js && pnpm run test:php",
-		"plugin-zip": "wp-scripts plugin-zip"
+		"plugin-zip": "wp-scripts plugin-zip",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"src/**/*.{js,jsx,ts,tsx}": [
+			"wp-scripts format"
+		],
+		"*.php": [
+			"composer lint:fix"
+		],
+		"package.json": [
+			"wp-scripts lint-pkg-json"
+		]
 	}
 }
