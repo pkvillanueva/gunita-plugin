@@ -4,12 +4,14 @@ Welcome to **GunitaPlugin**, your go-to WordPress plugin boilerplate. Crafted to
 
 ## Features
 
-- Modern JavaScript/TypeScript development with webpack
-- React support via @wordpress/scripts
+- Modern JavaScript/TypeScript development with webpack via @wordpress/scripts
+- React support built-in for component development
+- Plain CSS with custom properties (CSS variables) design system, processed by PostCSS
 - PHP with namespaces and autoloading (PSR-4)
-- Comprehensive testing setup for both PHP and JavaScript
+- Comprehensive testing setup for both PHP (PHPUnit) and JavaScript (Jest)
 - Code quality tools (PHPStan, PHPCS, ESLint, Stylelint)
 - Built-in development environment using @wordpress/env
+- No CSS framework dependencies
 
 ## Requirements
 
@@ -33,7 +35,7 @@ Use a text search and replace tool in your code editor to handle this efficientl
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-repo-url/gunita-plugin.git
+   git clone https://github.com/pkvillanueva/gunita-plugin.git
    cd gunita-plugin
    ```
 
@@ -58,16 +60,18 @@ Use a text search and replace tool in your code editor to handle this efficientl
    This will initialize a Docker container with a WordPress installation. You can then visit the WordPress site in your browser.
 
 4. **Development**:
-   For active development with hot-reloading:
+   For active development with hot-reloading of JavaScript and CSS:
    ```bash
    pnpm start
    ```
 
 5. **Building for Production**:
-   Compile and optimize your plugin for production use:
+   Compile and optimize your plugin for production use (handles both JavaScript and CSS):
    ```bash
    pnpm run build
    ```
+
+   The build process uses @wordpress/scripts which compiles TypeScript, bundles JavaScript, processes CSS (autoprefixing), and optimizes assets for production.
 
 ## Available Commands
 
@@ -83,7 +87,7 @@ Use a text search and replace tool in your code editor to handle this efficientl
 - `pnpm run lint:pkg-json`: Lint package.json file
 - `pnpm run test:js`: Run JavaScript unit tests
 - `pnpm run test:js:watch`: Run JavaScript tests in watch mode
-- `pnpm run test:php`: Run PHP unit tests (requires wp-env to be running)
+- `pnpm run test:php`: Run PHP unit tests (requires wp-env to be running; uses dynamic plugin path detection)
 - `pnpm test`: Run both JavaScript and PHP tests
 - `pnpm run plugin-zip`: Generate a zipped version of your plugin
 
@@ -99,7 +103,7 @@ This plugin includes a simplified testing setup for both PHP and JavaScript code
 
 ### PHP Testing
 
-The PHP test suite uses PHPUnit with WordPress's official test framework (`WP_UnitTestCase`), running inside the @wordpress/env Docker environment.
+The PHP test suite uses PHPUnit with WordPress's official test framework (`WP_UnitTestCase`), running inside the @wordpress/env Docker environment. The test script automatically detects your plugin's folder name, so no configuration is needed when you clone or rename the project.
 
 #### Prerequisites
 
@@ -109,6 +113,8 @@ Make sure the WordPress environment is running:
 pnpm run env:start
 ```
 
+**Note**: The `test:php` script uses `wp-env run tests-cli` to execute PHPUnit tests inside the WordPress Docker environment. The script automatically detects your plugin's folder name using shell substitution, which works on macOS, Linux, and Windows WSL/Git Bash. If you're using Windows CMD/PowerShell, you may need to update the script in `package.json` to hardcode your plugin folder name.
+
 #### Run all PHP tests
 
 ```bash
@@ -117,11 +123,11 @@ pnpm run test:php
 
 #### PHP test structure
 
-- **Test files location**: `tests/`
-- **Bootstrap file**: `tests/bootstrap.php`
+- **Test files location**: `tests/php/` (PHP test files)
+- **Bootstrap file**: `tests/php/bootstrap.php`
 - **Configuration**: `phpunit.xml.dist`
 
-Test files should be prefixed with `test-` (e.g., `test-plugin.php`).
+Test files should be prefixed with `test-` (e.g., `test-plugin.php`). JavaScript tests are kept separate in `tests/js/`.
 
 #### Writing PHP tests
 
@@ -159,9 +165,11 @@ pnpm run test:js:watch
 
 #### JavaScript test structure
 
-- **Test files location**: `tests/unit/`
+- **Test files location**: `tests/js/` (JavaScript/TypeScript tests)
 - **Configuration**: `jest.config.js`
-- **Supported file patterns**: `tests/unit/**/*.test.[jt]s?(x)`
+- **Supported file patterns**: `tests/js/**/*.test.[jt]s?(x)`
+
+PHP tests are kept separate in the `tests/php/` directory.
 
 #### Writing JavaScript tests
 
@@ -192,32 +200,43 @@ This will run JavaScript tests first, then PHP tests (requires wp-env to be runn
 ```
 .
 ├── assets/              # Source files
-│   ├── css/            # Stylesheets
+│   ├── css/            # Stylesheets (plain CSS)
 │   │   ├── admin/      # Admin styles
-│   │   └── frontend/   # Frontend styles
-│   └── js/             # JavaScript/TypeScript
-│       ├── admin/      # Admin scripts
-│       ├── frontend/   # Frontend scripts
-│       └── shared/     # Shared utilities
-├── bin/                # Development scripts
-├── build/              # Built assets (generated)
+│   │   ├── frontend/   # Frontend styles
+│   │   └── shared/     # Shared styles with CSS custom properties
+│   ├── js/             # JavaScript/TypeScript
+│   │   ├── admin/      # Admin scripts
+│   │   ├── frontend/   # Frontend scripts
+│   │   └── shared/     # Shared utilities
+│   ├── fonts/          # Custom fonts
+│   └── images/         # Image assets
+├── build/              # Built assets (generated by webpack)
 ├── coverage/           # Test coverage reports (generated)
 ├── languages/          # Translation files
 ├── src/                # PHP source files
 │   ├── Admin/          # Admin-specific classes
-│   └── Helpers/        # Helper classes
+│   │   └── Setup.php   # Admin hooks and functionality
+│   ├── Helpers/        # Helper classes
+│   │   └── Asset.php   # Asset enqueueing helper
+│   ├── Install.php     # Plugin activation handler
+│   ├── Setup.php       # Main plugin setup
+│   └── Uninstall.php   # Plugin uninstall handler
 ├── tests/              # Test files
-│   ├── unit/           # JavaScript unit tests
-│   ├── bootstrap.php   # PHP test bootstrap
-│   └── test-*.php      # PHP test files
-├── vendor/             # Composer dependencies
+│   ├── js/             # JavaScript/TypeScript unit tests
+│   └── php/            # PHP tests directory
+│       ├── bootstrap.php  # PHP test bootstrap
+│       └── test-*.php     # PHP test files
+├── vendor/             # Composer dependencies (generated)
+├── node_modules/       # npm dependencies (generated)
 ├── composer.json       # PHP dependencies
 ├── jest.config.js      # Jest configuration
-├── package.json        # JavaScript dependencies
+├── package.json        # JavaScript dependencies and scripts
+├── phpcs.xml           # PHP_CodeSniffer configuration
+├── phpstan.neon        # PHPStan configuration
 ├── phpunit.xml.dist    # PHPUnit configuration
 ├── plugin.php          # Main plugin file
 ├── tsconfig.json       # TypeScript configuration
-└── webpack.config.js   # Webpack configuration
+└── webpack.config.js   # Webpack configuration (extends @wordpress/scripts)
 ```
 
 ## Plugin Architecture
@@ -239,6 +258,50 @@ The JavaScript code uses:
 - **Modern ES6+**: Arrow functions, async/await, modules
 - **Webpack**: Module bundling with @wordpress/scripts
 - **React support**: Built-in support for React components
+
+### CSS Architecture
+
+The plugin uses modern CSS with a custom properties (CSS variables) design system, avoiding the complexity of CSS frameworks:
+
+- **Plain CSS**: Write standard CSS without learning Sass/Less/Stylus syntax
+- **PostCSS processing**: CSS is processed by PostCSS (via @wordpress/scripts) for autoprefixing and modern CSS feature support
+- **Design tokens**: Comprehensive set of CSS custom properties for consistency
+- **Shared variables**: All design tokens defined in `assets/css/shared/shared.css`
+
+#### Available Design Tokens
+
+**Colors:**
+- Brand colors: `--gunita-color-primary`, `--gunita-color-secondary`, `--gunita-color-accent`
+- Semantic colors: `--gunita-color-success`, `--gunita-color-warning`, `--gunita-color-error`, `--gunita-color-info`
+- Neutral colors: `--gunita-color-text`, `--gunita-color-text-light`, `--gunita-color-border`, `--gunita-color-background`, `--gunita-color-background-alt`
+
+**Spacing:**
+- Scale from `--gunita-spacing-xs` (4px) to `--gunita-spacing-2xl` (48px)
+
+**Typography:**
+- Font families: `--gunita-font-family-base`, `--gunita-font-family-mono`
+- Font sizes: `--gunita-font-size-xs` through `--gunita-font-size-3xl`
+- Font weights: `--gunita-font-weight-normal` through `--gunita-font-weight-bold`
+- Line heights: `--gunita-line-height-tight`, `--gunita-line-height-normal`, `--gunita-line-height-relaxed`
+
+**UI Elements:**
+- Border radius: `--gunita-radius-sm` through `--gunita-radius-full`
+- Shadows: `--gunita-shadow-sm`, `--gunita-shadow-md`, `--gunita-shadow-lg`
+- Transitions: `--gunita-transition-fast`, `--gunita-transition-base`, `--gunita-transition-slow`
+- Z-index scale: `--gunita-z-index-dropdown` through `--gunita-z-index-tooltip`
+
+#### Usage Example
+
+```css
+.my-component {
+    padding: var(--gunita-spacing-md);
+    color: var(--gunita-color-text);
+    background: var(--gunita-color-background);
+    border-radius: var(--gunita-radius-md);
+    box-shadow: var(--gunita-shadow-sm);
+    transition: all var(--gunita-transition-base);
+}
+```
 
 ## Best Practices
 
