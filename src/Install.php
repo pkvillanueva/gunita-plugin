@@ -25,10 +25,6 @@ class Install {
 	 * @return void
 	 */
 	public static function activate(): void {
-		// Flush rewrite rules on activation.
 		flush_rewrite_rules();
-
-		// Add any other activation tasks here.
-		// Example: Create custom database tables, set default options, etc.
 	}
 }

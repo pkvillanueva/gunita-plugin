@@ -50,17 +50,17 @@ register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\Uninstall', 'uninstall' ]
 /**
  * Initialize plugin.
  *
- * Instantiate the main Setup class and register its hooks.
+ * Get the singleton instance of the main Setup class.
+ * The setup() method is automatically called by the Singleton trait.
  */
-$gunita_plugin_setup = new Setup();
-$gunita_plugin_setup->register_hooks();
+Setup::instance();
 
 /**
  * Initialize admin functionality.
  *
  * Only load admin functionality when in the WordPress admin.
+ * The setup() method is automatically called by the Singleton trait.
  */
 if ( is_admin() ) {
-	$gunita_plugin_admin_setup = new Admin\Setup();
-	$gunita_plugin_admin_setup->register_hooks();
+	Admin\Setup::instance();
 }

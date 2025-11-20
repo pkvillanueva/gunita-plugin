@@ -16,7 +16,6 @@ namespace GunitaPlugin;
  */
 class Uninstall {
 
-
 	/**
 	 * Run uninstallation tasks.
 	 *
@@ -26,9 +25,6 @@ class Uninstall {
 	 * @return void
 	 */
 	public static function uninstall(): void {
-		// Clean up plugin data on uninstall.
-		// Example: Remove custom database tables, delete options, etc.
-		// Note: Be careful with data deletion. Consider if users might want to keep data
-		// when reinstalling the plugin. Some plugins provide an option for this.
+		// Intentionally left empty.
 	}
 }

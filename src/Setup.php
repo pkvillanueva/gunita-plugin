@@ -11,6 +11,7 @@
 namespace GunitaPlugin;
 
 use GunitaPlugin\Helpers\Asset;
+use GunitaPlugin\Traits\Singleton;
 
 /**
  * Class Setup
@@ -18,17 +19,28 @@ use GunitaPlugin\Helpers\Asset;
  * This class handles the setup of the Gunita Plugin public-facing functionality.
  */
 class Setup {
-
+	use Singleton;
 
 	/**
-	 * Register WordPress hooks.
+	 * Constructor.
 	 *
-	 * This method should be called after instantiation to register
+	 * Made protected to prevent direct instantiation.
+	 * Use Setup::instance() instead.
+	 */
+	protected function __construct() {
+		// Constructor intentionally left empty.
+		// Initialization happens in setup() method.
+	}
+
+	/**
+	 * Setup method called automatically after instantiation.
+	 *
+	 * This method is called by the Singleton trait and registers
 	 * all WordPress action and filter hooks.
 	 *
 	 * @return void
 	 */
-	public function register_hooks(): void {
+	protected function setup(): void {
 		add_action( 'init', [ $this, 'init' ], 0 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );

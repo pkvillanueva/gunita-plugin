@@ -11,6 +11,7 @@
 namespace GunitaPlugin\Admin;
 
 use GunitaPlugin\Helpers\Asset;
+use GunitaPlugin\Traits\Singleton;
 
 /**
  * Class Setup
@@ -19,31 +20,21 @@ use GunitaPlugin\Helpers\Asset;
  */
 class Setup {
 
-	/**
-	 * Setup constructor.
-	 */
-	public function __construct() {
-		// Constructor intentionally left empty.
-		// Use register_hooks() to register WordPress hooks.
-	}
+	use Singleton;
 
 	/**
-	 * Register WordPress hooks.
+	 * Setup method called automatically after instantiation.
 	 *
-	 * This method should be called after instantiation to register
-	 * all WordPress action and filter hooks.
+	 * This method is called by the Singleton trait and registers
+	 * all WordPress action and filter hooks for the admin area.
 	 *
 	 * Example: Add admin menu pages, settings pages, etc.
 	 *
 	 * @return void
 	 */
-	public function register_hooks(): void {
-		// Register admin assets.
+	protected function setup(): void {
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-
-		// Add your admin menu pages here.
-		// Example: add_action( 'admin_menu', [ $this, 'add_admin_menu' ] ).
 	}
 
 	/**
