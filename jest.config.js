@@ -13,7 +13,7 @@
 module.exports = {
 	...require( '@wordpress/scripts/config/jest-unit.config.js' ),
 	testMatch: [
-		'**/tests/unit/**/*.test.[jt]s?(x)',
+		'**/tests/js/**/*.test.[jt]s?(x)',
 	],
 	collectCoverageFrom: [
 		'assets/js/**/*.{js,jsx,ts,tsx}',

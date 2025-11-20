@@ -47,7 +47,7 @@
 		"lint:pkg-json": "wp-scripts lint-pkg-json",
 		"test:js": "wp-scripts test-unit-js",
 		"test:js:watch": "wp-scripts test-unit-js --watch",
-		"test:php": "wp-env run tests-cli --env-cwd=wp-content/plugins/gunita-plugin vendor/bin/phpunit",
+		"test:php": "wp-env run tests-cli --env-cwd=\"wp-content/plugins/$(basename \"$PWD\")\" vendor/bin/phpunit",
 		"test": "pnpm run test:js && pnpm run test:php",
 		"plugin-zip": "wp-scripts plugin-zip"
 	}
