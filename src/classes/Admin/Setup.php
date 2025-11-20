@@ -10,7 +10,7 @@
 
 namespace GunitaPlugin\Admin;
 
-use GunitaPlugin\Helpers\Asset;
+use GunitaPlugin\Asset;
 use GunitaPlugin\Traits\Singleton;
 
 /**
@@ -46,12 +46,7 @@ class Setup {
 	 * @return void
 	 */
 	public function enqueue_styles(): void {
-		wp_enqueue_style(
-			'gunita-plugin-admin',
-			Asset::get_file_url( 'admin', 'css' ),
-			Asset::get_file_dependencies( 'admin' ),
-			Asset::get_file_version( 'admin' )
-		);
+		Asset::enqueue_style( 'gunita-plugin-admin', 'admin' );
 	}
 
 	/**
@@ -63,12 +58,6 @@ class Setup {
 	 * @return void
 	 */
 	public function enqueue_scripts(): void {
-		wp_enqueue_script(
-			'gunita-plugin-admin',
-			Asset::get_file_url( 'admin', 'js' ),
-			Asset::get_file_dependencies( 'admin' ),
-			Asset::get_file_version( 'admin' ),
-			true
-		);
+		Asset::enqueue_script( 'gunita-plugin-admin', 'admin' );
 	}
 }

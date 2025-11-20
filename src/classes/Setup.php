@@ -10,7 +10,7 @@
 
 namespace GunitaPlugin;
 
-use GunitaPlugin\Helpers\Asset;
+use GunitaPlugin\Asset;
 use GunitaPlugin\Traits\Singleton;
 
 /**
@@ -19,18 +19,8 @@ use GunitaPlugin\Traits\Singleton;
  * This class handles the setup of the Gunita Plugin public-facing functionality.
  */
 class Setup {
-	use Singleton;
 
-	/**
-	 * Constructor.
-	 *
-	 * Made protected to prevent direct instantiation.
-	 * Use Setup::instance() instead.
-	 */
-	protected function __construct() {
-		// Constructor intentionally left empty.
-		// Initialization happens in setup() method.
-	}
+	use Singleton;
 
 	/**
 	 * Setup method called automatically after instantiation.
@@ -70,12 +60,7 @@ class Setup {
 	 * This method is hooked to the 'wp_enqueue_scripts' action and is responsible for enqueueing the plugin styles.
 	 */
 	public function enqueue_styles(): void {
-		wp_enqueue_style(
-			'gunita-plugin-public',
-			Asset::get_file_url( 'public', 'css' ),
-			Asset::get_file_dependencies( 'public' ),
-			Asset::get_file_version( 'public' )
-		);
+		Asset::enqueue_style( 'gunita-plugin-public', 'public' );
 	}
 
 	/**
@@ -84,12 +69,6 @@ class Setup {
 	 * This method is hooked to the 'wp_enqueue_scripts' action and is responsible for enqueueing the plugin scripts.
 	 */
 	public function enqueue_scripts(): void {
-		wp_enqueue_script(
-			'gunita-plugin-public',
-			Asset::get_file_url( 'public', 'js' ),
-			Asset::get_file_dependencies( 'public' ),
-			Asset::get_file_version( 'public' ),
-			true
-		);
+		Asset::enqueue_script( 'gunita-plugin-public', 'public' );
 	}
 }
