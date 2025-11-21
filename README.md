@@ -97,6 +97,15 @@ Use a text search and replace tool in your code editor to handle this efficientl
 - `composer lint`: Run PHPCS linting
 - `composer lint:fix`: Auto-fix PHPCS issues
 
+### Git Hooks
+
+This plugin uses Husky for automated git hooks:
+
+- **Pre-commit**: Automatically formats staged files using lint-staged
+- **Commit-msg**: Validates commit messages follow conventional commit format using commitlint
+
+The hooks are automatically installed when you run `pnpm install`.
+
 ## Testing
 
 This plugin includes a simplified testing setup for both PHP and JavaScript code, using WordPress's official test framework and @wordpress/env.
@@ -214,13 +223,15 @@ This will run JavaScript tests first, then PHP tests (requires wp-env to be runn
 ├── coverage/           # Test coverage reports (generated)
 ├── languages/          # Translation files
 ├── src/                # PHP source files
-│   ├── Admin/          # Admin-specific classes
-│   │   └── Setup.php   # Admin hooks and functionality
-│   ├── Helpers/        # Helper classes
-│   │   └── Asset.php   # Asset enqueueing helper
-│   ├── Install.php     # Plugin activation handler
-│   ├── Setup.php       # Main plugin setup
-│   └── Uninstall.php   # Plugin uninstall handler
+│   └── classes/        # PHP class files with PSR-4 autoloading
+│       ├── Admin/          # Admin-specific classes
+│       │   └── Setup.php   # Admin hooks and functionality
+│       ├── Traits/         # Reusable traits
+│       │   └── Singleton.php # Singleton pattern implementation
+│       ├── Asset.php       # Asset enqueueing helper
+│       ├── Install.php     # Plugin activation handler
+│       ├── Setup.php       # Main plugin setup
+│       └── Uninstall.php   # Plugin uninstall handler
 ├── tests/              # Test files
 │   ├── js/             # JavaScript/TypeScript unit tests
 │   └── php/            # PHP tests directory
