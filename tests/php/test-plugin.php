@@ -19,7 +19,7 @@ class Test_Plugin extends WP_UnitTestCase {
 	public function test_plugin_version() {
 		$this->assertTrue( defined( 'GUNITA_PLUGIN_VERSION' ) );
 
-		// Get the version from the plugin file header
+		// Get the version from the plugin file header.
 		$plugin_file = dirname( dirname( __DIR__ ) ) . '/plugin.php';
 		$plugin_data = get_plugin_data( $plugin_file );
 
