@@ -40,7 +40,7 @@
 		"typescript": "^5.9.3"
 	},
 	"scripts": {
-		"env:start": "wp-env start",
+		"env:start": "wp-env start --xdebug",
 		"env:stop": "wp-env stop",
 		"start": "wp-scripts start",
 		"build": "wp-scripts build",
